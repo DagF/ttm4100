@@ -1,0 +1,78 @@
+webserver_v1.py
+from socket import *
+serverPort = 12000
+serverSocket = socket(AF_INET, SOCK_STREAM)
+serverSocket.bind(("", serverPort))
+serverSocket.listen(True)
+while True:
+	print ('Ready to serve...')
+	connectionSocket, addr = serverSocket.accept()
+	try:
+        message = connectionSocket.recv(1024)#Fill in start #Fill in end
+		print(message)
+	except IOError:
+        pass
+
+serverSocket.close()
+
+
+http://localhost:12000/
+
+
+GET / HTTP/1.1
+Host: localhost:12000
+Connection: keep-alive
+Cache-Control: max-age=0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: nb,no;q=0.8,nn;q=0.6,en-US;q=0.4,en;q=0.2,en-GB;q=0.2
+
+
+http://localhost:12000/file
+
+
+GET /file HTTP/1.1
+Host: localhost:12000
+Connection: keep-alive
+Cache-Control: max-age=0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: nb,no;q=0.8,nn;q=0.6,en-US;q=0.4,en;q=0.2,en-GB;q=0.2
+
+
+from socket import *
+serverPort = 12001
+serverSocket = socket(AF_INET, SOCK_STREAM)
+serverSocket.bind(("", serverPort))
+serverSocket.listen(True)
+print ('Ready to serve...')
+while True:
+	print ('Ready to serve...')
+	connectionSocket, addr = serverSocket.accept()
+	try:
+		message = connectionSocket.recv(1024)#Fill in start #Fill in end
+		
+		print(message)
+		filename = message.split()[1]
+		print(filename)
+	except IOError:
+		pass
+
+serverSocket.close()
+
+
+http://localhost:12000/file
+
+
+GET /file HTTP/1.1
+Host: localhost:12000
+Connection: keep-alive
+Cache-Control: max-age=0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: nb,no;q=0.8,nn;q=0.6,en-US;q=0.4,en;q=0.2,en-GB;q=0.2
+
+/file
